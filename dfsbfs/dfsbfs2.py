@@ -1,4 +1,8 @@
 # 미로 탈출 문제 (왼쪽 위 -> 오른쪽 아래)
+# 0,0 에서 N,M 까지
+# 미로에 괴물이 있는 부분은 0, 없는 부분은 1
+# 미로 탈출을 위한 최소 칸의 개수
+
 from collections import deque
 
 n, m = map(int, input().split())
