@@ -2,6 +2,7 @@
 #   - 시작점, 끝점, 중간점을 이용하여 탐색 범위를 설정한다.
 # 순차 탐색 : 리스트에서 특정 데이터를 찾기 위해 앞에서부터 데이터를 하나씩 확인하는 탐색
 
+# 재귀 사용
 def binary_search(array, target, start, end):
     if start > end:
         return None
@@ -15,6 +16,7 @@ def binary_search(array, target, start, end):
     else:
         return binary_search(array, target, mid + 1, end) # 오른쪽 탐색
     
+# 반복문 사용
 def binary_search_loop(array, target, start, end):
     while start <= end:
         mid = (start + end) // 2
