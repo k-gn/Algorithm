@@ -26,7 +26,7 @@ def fibo_topdown(x):
         return 1
     if d[x] != 0:
         return d[x]
-    d[x] = n(x - 1) + fibo_topdown(x - 2)
+    d[x] = fibo_topdown(x - 1) + fibo_topdown(x - 2)
     return d[x]
 
 # 보텀업

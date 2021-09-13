@@ -1,17 +1,24 @@
 # 금광
+# n x m 크기의 금광
+# 금광은 1 x 1 크기의 칸으로 나누어져 있다.
+# 첫번째 열부터 출발하여 금을 캔다.
+# 첫번째 열의 어느 행에서든 출발 후, m - 1번에 걸쳐서 매번 오른쪽 위, 오른쪽, 오른쪽 아래 3가지 중 하나의 위치로 이동해야 한다.
+# 채굴자가 얻을 수 있는 금의 최대 크기 출력
+# dp[i][j] = array[i][j] + max(dp[i-1][j-1], dp[i][j-1], dp[i+1][j-1])
+# dp[i][j] = i행 j열까지의 최적의 해(얻을 수 있는 금의 최대값), array[i][j] = i행 j열에 존재하는 금의양
 
-
-for tc in range(int(input())):
+for tc in range(int(input())): # test case
+    # 금광 정보 입력
     n, m = map(int, input().split()) # n 행 m 열
     array = list(map(int, input().split())) 
     
     dp = []
     index = 0
-    
+    # 2차원 dp 테이블 초기화
     for i in range(n):
         dp.append(array[index:index+m]) # 열 단위로 슬라이싱
         index += m
-    # print(dp)
+    print(dp)
     
     # 1 3 2 5
     # 6 2 1 4

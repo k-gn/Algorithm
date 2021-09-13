@@ -12,6 +12,7 @@ def heapsort(iterable):
 
     for value in iterable:
         heapq.heappush(h, value)
+    print(h)
     for i in range(len(h)):
         num = heapq.heappop(h);
         print(num)
