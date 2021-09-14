@@ -1,10 +1,13 @@
 # 전보
+# N개의 도시
+# 도시 C에서 보낸 메시지를 받게되는 도시의 개수와, 도시들이 모두 메시지를 받는데 걸리는 시간은?
+
 import heapq
 INF = int(1e9)  # 무한
-# 노드의 개수, 간선의 개수
+# 노드의 개수, 간선의 개수 (도시 개수, 통로)
 n, m = map(int, input().split())
 # 시작 노드 번호
-start = int(input())
+start = int(input()) # 도시 C
 # 각 노드에 연결되어 있는 노드에 대한 정보
 graph = [[] for i in range(n + 1)]
 # 최단 거리 테이블
