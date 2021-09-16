@@ -22,5 +22,6 @@ for i in data:
 # 구간 합
 left = 3
 right = 4
+print(prefix_sum)
 print(prefix_sum[right] - prefix_sum[left-1])
 
