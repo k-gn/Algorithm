@@ -38,7 +38,6 @@ class Graph {
         if(!n2.adjacent.contains(n1)) {
             n2.adjacent.add(n1);
         }
-
     }
 
     void dfs() {
