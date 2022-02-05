@@ -95,6 +95,27 @@ class Tree {
         }
     }
 
+    // 트리가 balanced 한지 확인
+    boolean isBalanced(Node root) {
+        if(root == null) return true;
+        int heightDiff = getHeight(root.left) - getHeight(root.right);
+
+        if(Math.abs(heightDiff) > 1) {
+            return false;
+        }else {
+            return isBalanced(root.left) && isBalanced(root.right);
+        }
+    }
+
+    int getHeight(Node root) {
+        if(root == null) {
+            return -1;
+        }
+
+        int result = Math.max(getHeight(root.left), getHeight(root.right)) + 1;
+        System.out.println("result : " + result);
+        return result;
+    }
 }
 public class ArrayToTree {
 
@@ -110,5 +131,8 @@ public class ArrayToTree {
         t.searchBTree(t.root, 2);
 
         t.print(t.BSTtoList());
+
+        System.out.println("================================");
+        t.isBalanced(t.root);
     }
 }
