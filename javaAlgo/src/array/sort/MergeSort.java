@@ -1,40 +1,72 @@
 package array.sort;
 
+import java.util.Arrays;
+
 public class MergeSort {
 
-    public static int[] src;
     public static int[] tmp;
 
     public static void main(String[] args) {
-        src = new int[]{1, 9, 8, 5, 4, 2, 3, 7, 6};
-        tmp = new int[src.length];
-        printArray(src);
-        mergeSort(0, src.length - 1);
-        printArray(src);
+        int[] arr = { 3, 1, 7, 4, 5, 6 ,8 };
+        mergeSort(arr);
+        printArray(arr);
 
     }
 
-    public static void mergeSort(int start, int end) {
-        if (start < end) {
-            int mid = (start + end) / 2;
-            // 중앙을 기준으로 2개의 그룹으로 분할 과정
-            mergeSort(start, mid);
-            mergeSort(mid + 1, end);
+    public static void mergeSort(int[] arr) {
+        tmp = new int[arr.length];
+        mergeSort(arr, 0, arr.length - 1);
+    }
 
-            // 정렬 후 병합 과정
-            int p = start; // 왼쪽 그룹의 시작
-            int q = mid + 1; // 오른쪽 그룹의 시작
-            int idx = p; // 병합된 배열의 위치
-            while (p <= mid || q <= end) {
-                if (q > end || (p <= mid && src[p] < src[q])) {
-                    tmp[idx++] = src[p++];
-                } else {
-                    tmp[idx++] = src[q++];
-                }
+    private static void mergeSort(int[] arr, int start, int end) {
+        // 원소가 2개 이상이라면
+        if(start < end) {
+            // 중앙 값을 구하고
+            int mid = (start + end) / 2;
+            // 중앙을 기준으로 2개의 그룹으로 분할
+            mergeSort(arr, start, mid);
+            mergeSort(arr, mid+1, end);
+            // 정렬 후 병합
+            merge(arr, start, mid, end);
+        }
+    }
+
+    private static void merge(int[] arr, int start, int mid, int end) {
+        // 배열 복사
+        tmp = arr.clone();
+
+        /*
+         * part1: 왼쪽 그룹의 시작 인덱스
+         * part2: 오른쪽 그룹의 시작 인덱스
+         * index: 정렬된 값을 병합된 배열의 어떤 위치에 넣어야하는 지
+         */
+        int part1 = start;
+        int part2 = mid + 1;
+        int index = start;
+
+        System.out.println("==================================");
+        System.out.println("start : " + start);
+        System.out.println("end : " + end);
+        System.out.println("mid : " + mid);
+        System.out.println("==================================");
+        System.out.println("part1 : " + part1);
+        System.out.println("part2 : " + part2);
+        System.out.println("index : " + index);
+        System.out.println("tmp : " + Arrays.toString(tmp));
+        System.out.println("==================================");
+        // 두 그룹중 한쪽의 원소가 끝날때까지 반복 (정렬 & 합병)
+        while(part1 <= mid && part2 <= end) {
+            if(tmp[part1] <= tmp[part2]) {
+                arr[index++] = tmp[part1++];
+            } else {
+                arr[index++] = tmp[part2++];
             }
-            for (int i = start; i <= end; i++) {
-                src[i] = tmp[i];
-            }
+        }
+
+        // 왼쪽 그룹의 원소가 남는 경우 처리
+        // (오른쪽 그룹의 원소가 남는 경우는 따로 처리하지 않아도 된다)
+        for(int i=0; i<=mid-part1; i++) {
+            arr[index+i] = tmp[part1+i];
         }
     }
 
