@@ -1,24 +1,18 @@
 package haru;
 
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.temporal.WeekFields;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
 public class AppMain {
 
 	public static void main(String[] args) {
-
-		String answer = "";
-
-		String str1 = "aaaaa";
-		String str2 = "bbbbb";
-
-		char[] chars1 = str1.toCharArray();
-		char[] chars2 = str2.toCharArray();
-
-		for (int i = 0; i < str1.length(); i++) {
-			answer += chars1[i];
-			answer += chars2[i];
-		}
-
-		str1.repeat(3);
-
-		System.out.println("answer = " + answer);
+		LocalDate date = LocalDate.of(2023, 07, 31);
+		WeekFields weekFields = WeekFields.of(Locale.getDefault());
+		int weekOfMonth = date.get(weekFields.weekOfMonth());
+		System.out.println(date.getYear() + "-" + date.getMonthValue() + "-" + weekOfMonth);
 	}
 }
